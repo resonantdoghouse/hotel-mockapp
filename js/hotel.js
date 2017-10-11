@@ -5,10 +5,8 @@ g = "color:darkgreen;font-weight:bold;font-size:14px;line-height:30px;";
 i = "color:cornflowerblue;font-weight:bold;font-size:14px;line-height:30px;background:ivory;line-height:30px;";
 k = "color:slategray;font-weight:normal;font-size:14px;background:whitesmoke;padding: 3px 10px;line-height:25px;"
 
-
 var output = '<p>Welcome, please open your console.<br><strong>&#8997; option + &#8984; command + j</strong></p>';
 // output += '<h2>cool</h2>';
-
 
 // Check if local storage is available
 if (typeof (Storage) !== "undefined") {
@@ -39,10 +37,13 @@ $('#about').on('click', function () {
     hotel.about();
 });
 
+$('#room-types').on('click', function () {
+    hotel.roomTypeInfo();
+});
+
 $('#checkout').on('click', function () {
     hotel.checkout();
 });
-
 
 /**
  * hotel object
@@ -61,16 +62,29 @@ var hotel = {
             numberOfRooms: 10
         }
     },
+    roomTypeInfo: function () {
+
+        for (var info in this.roomTypes) {
+            console.log(info);
+
+            output = '🛌 room-type: <strong>' + info + '</strong>';
+            updateOutput();
+
+        }
+
+    },
     // list total number of rooms
     totalRooms: function () {
         var totalRooms = this.roomTypes.twin.numberOfRooms +
             this.roomTypes.double.numberOfRooms +
             this.roomTypes.suite.numberOfRooms;
+
         return totalRooms;
     },
     // current number of rooms booked
     roomsBooked: function () {
         var currentRoomsBooked = this.booked;
+
         return currentRoomsBooked;
     },
     // check room availability
@@ -78,12 +92,13 @@ var hotel = {
         var roomsAvailable = this.totalRooms() - this.roomsBooked();
 
         output = 'There are 🛌  &nbsp;' + roomsAvailable + ' rooms available';
-
         updateOutput();
+
         return roomsAvailable;
     },
     availableRooms: function () {
         var roomsAvailable = this.totalRooms() - this.roomsBooked();
+
         return roomsAvailable;
     },
     // book a room
@@ -92,7 +107,7 @@ var hotel = {
 
             var roomsToBook = prompt('How many rooms would you like?', 1);
 
-            if (roomsToBook < this.availableRooms()) {
+            if (roomsToBook <= this.availableRooms()) {
                 this.booked = this.booked + parseInt(roomsToBook);
 
                 console.log('%cRoom(s) booked ✅', k);
@@ -136,7 +151,6 @@ var hotel = {
                 return;
             }
 
-
         } else {
             console.log('no rooms to checkout of');
         }
@@ -160,6 +174,7 @@ var hotel = {
         updateOutput();
     }
 }
+
 
 // Welcome message
 console.log('%cWelcome to 🏨 ' + hotel.name, c);
