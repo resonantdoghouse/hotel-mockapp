@@ -37,7 +37,11 @@ $('#book-room').on('click', function () {
 
 $('#about').on('click', function () {
     hotel.about();
-})
+});
+
+$('#checkout').on('click', function () {
+    hotel.checkout();
+});
 
 
 /**
