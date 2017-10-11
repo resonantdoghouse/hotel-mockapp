@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+.controls {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+.container {
+    overflow: scroll;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    background: dimgray;
+    background: linear-gradient(45deg, cornflowerblue, lightskyblue);
+    color: whitesmoke;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    text-rendering: optimizeLegibility;
+    font-size: 12vw;
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-family: 'Grand Hotel', cursive;
+    text-shadow: 1px 1px 2px black;
+}
+
+.hotels {
+    color: black;
+    padding: 1em 2.5em;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+    line-height: 1.8em;
+    max-width: 600px;
+}
